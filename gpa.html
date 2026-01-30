@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GPA Calculator</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 7px;
+    margin: 5px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.result {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>GPA Calculator</h2>
+
+<input type="number" id="cmaths" placeholder="C. Maths (0-50)">
+<input type="number" id="english" placeholder="English (0-50)">
+<input type="number" id="nepali" placeholder="Nepali (0-50)">
+<input type="number" id="science" placeholder="Science (0-50)">
+<input type="number" id="samagik" placeholder="Samagik (0-50)">
+<input type="number" id="omaths" placeholder="O. Maths (0-50)">
+<input type="number" id="hamro" placeholder="Hamro Panauti (0-50)">
+<input type="number" id="account" placeholder="Account (0-50)">
+<input type="number" id="health" placeholder="Health (0-50)">
+
+<button onclick="calculateGPA()">Calculate GPA</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<script>
+function calculateGPA() {
+
+let subjects = [
+cmaths.value, english.value, nepali.value, science.value,
+samagik.value, omaths.value, hamro.value, account.value, health.value
+];
+
+let total = 0;
+
+for (let i = 0; i < subjects.length; i++) {
+    let mark = Number(subjects[i]);
+    if (mark < 0 || mark > 50 || subjects[i] === "") {
+        alert("Please enter marks between 0 and 50 for all subjects.");
+        return;
+    }
+    total += mark;
+}
+
+let percentage = (total / 450) * 100;
+let grade = "";
+let gpa = 0;
+let message = "";
+
+if (percentage >= 90) { grade="A+"; gpa=4.0; message="Congratulations! Excellent result. Keep it up!"; }
+else if (percentage >= 80) { grade="A"; gpa=3.6; message="Congratulations! Very good performance."; }
+else if (percentage >= 70) { grade="B+"; gpa=3.2; message="Good job! Practice more to reach higher GPA."; }
+else if (percentage >= 60) { grade="B"; gpa=2.8; message="Nice effort. Practice more for better results."; }
+else if (percentage >= 50) { grade="C"; gpa=2.4; message="You passed. Practice more to improve your GPA."; }
+else if (percentage >= 40) { grade="D"; gpa=2.0; message="Keep trying. Practice more and you will improve."; }
+else { grade="F"; gpa=0.0; message="Do not lose hope. Practice more and try again."; }
+
+document.getElementById("result").innerHTML = `
+<b>Total Marks:</b> ${total} / 450 <br>
+<b>Percentage:</b> ${percentage.toFixed(2)}% <br>
+<b>Grade:</b> ${grade} <br>
+<b>GPA:</b> ${gpa} <br><br>
+<b>Message:</b> ${message}
+`;
+}
+</script>
+
+</body>
+</html>

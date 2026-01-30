@@ -2,114 +2,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GPA Calculator</title>
-
+<title>GPA Calculator 🌺</title>
 <style>
+/* Background & font */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #ffe5ec, #fff0f5); /* soft floral colors */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+/* Main container */
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 350px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-h2 {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px 30px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     text-align: center;
 }
 
-input {
-    width: 100%;
-    padding: 7px;
-    margin: 5px 0;
+/* Heading */
+h2 {
+    font-family: 'Cursive', sans-serif;
+    color: #d63384;
+    margin-bottom: 15px;
 }
 
-button {
-    width: 100%;
+/* Input styles */
+input {
+    width: 90%;
     padding: 10px;
-    background: #4facfe;
+    margin: 5px 0;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    font-size: 14px;
+}
+
+/* Button */
+button {
+    width: 95%;
+    padding: 12px;
+    background: #ff66b2;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
+button:hover {
+    background: #ff3399;
+}
+
+/* Result box */
 .result {
-    margin-top: 10px;
-    padding: 10px;
-    background: #f1f1f1;
-    border-radius: 5px;
+    margin-top: 15px;
+    background: #fff0f5;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #5a2a5b;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Flower emoji heading decoration */
+.flower {
+    font-size: 20px;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
-<h2>GPA Calculator</h2>
+    <h2><span class="flower">🌸</span> GPA Calculator <span class="flower">🌺</span></h2>
 
-<input type="number" id="cmaths" placeholder="C. Maths (0-50)">
-<input type="number" id="english" placeholder="English (0-50)">
-<input type="number" id="nepali" placeholder="Nepali (0-50)">
-<input type="number" id="science" placeholder="Science (0-50)">
-<input type="number" id="samagik" placeholder="Samagik (0-50)">
-<input type="number" id="omaths" placeholder="O. Maths (0-50)">
-<input type="number" id="hamro" placeholder="Hamro Panauti (0-50)">
-<input type="number" id="account" placeholder="Account (0-50)">
-<input type="number" id="health" placeholder="Health (0-50)">
+    <!-- Student Name -->
+    <input type="text" id="studentName" placeholder="Enter Your Name">
 
-<button onclick="calculateGPA()">Calculate GPA</button>
+    <!-- Subjects -->
+    <input type="number" id="cmaths" placeholder="C. Maths (0-50)">
+    <input type="number" id="english" placeholder="English (0-50)">
+    <input type="number" id="nepali" placeholder="Nepali (0-50)">
+    <input type="number" id="science" placeholder="Science (0-50)">
+    <input type="number" id="samagik" placeholder="Samagik (0-50)">
+    <input type="number" id="omaths" placeholder="O. Maths (0-50)">
+    <input type="number" id="hamro" placeholder="Hamro Panauti (0-50)">
+    <input type="number" id="account" placeholder="Account (0-50)">
+    <input type="number" id="health" placeholder="Health (0-50)">
 
-<div class="result" id="result"></div>
+    <button onclick="calculateGPA()">Calculate GPA</button>
+
+    <div class="result" id="result"></div>
 </div>
 
 <script>
 function calculateGPA() {
-
-let subjects = [
-cmaths.value, english.value, nepali.value, science.value,
-samagik.value, omaths.value, hamro.value, account.value, health.value
-];
-
-let total = 0;
-
-for (let i = 0; i < subjects.length; i++) {
-    let mark = Number(subjects[i]);
-    if (mark < 0 || mark > 50 || subjects[i] === "") {
-        alert("Please enter marks between 0 and 50 for all subjects.");
+    const studentName = document.getElementById("studentName").value.trim();
+    if(studentName === "") {
+        alert("Please enter your name!");
         return;
     }
-    total += mark;
-}
 
-let percentage = (total / 450) * 100;
-let grade = "";
-let gpa = 0;
-let message = "";
+    let subjects = [
+        cmaths.value, english.value, nepali.value, science.value,
+        samagik.value, omaths.value, hamro.value, account.value, health.value
+    ];
 
-if (percentage >= 90) { grade="A+"; gpa=4.0; message="Congratulations! Excellent result. Keep it up!"; }
-else if (percentage >= 80) { grade="A"; gpa=3.6; message="Congratulations! Very good performance."; }
-else if (percentage >= 70) { grade="B+"; gpa=3.2; message="Good job! Practice more to reach higher GPA."; }
-else if (percentage >= 60) { grade="B"; gpa=2.8; message="Nice effort. Practice more for better results."; }
-else if (percentage >= 50) { grade="C"; gpa=2.4; message="You passed. Practice more to improve your GPA."; }
-else if (percentage >= 40) { grade="D"; gpa=2.0; message="Keep trying. Practice more and you will improve."; }
-else { grade="F"; gpa=0.0; message="Do not lose hope. Practice more and try again."; }
+    let total = 0;
 
-document.getElementById("result").innerHTML = `
-<b>Total Marks:</b> ${total} / 450 <br>
-<b>Percentage:</b> ${percentage.toFixed(2)}% <br>
-<b>Grade:</b> ${grade} <br>
-<b>GPA:</b> ${gpa} <br><br>
-<b>Message:</b> ${message}
-`;
+    for (let i = 0; i < subjects.length; i++) {
+        let mark = Number(subjects[i]);
+        if (mark < 0 || mark > 50 || subjects[i] === "") {
+            alert("Please enter valid marks (0-50) for all subjects.");
+            return;
+        }
+        total += mark;
+    }
+
+    let percentage = (total / 450) * 100;
+    let grade = "";
+    let gpa = 0;
+    let message = "";
+
+    if (percentage >= 90) { grade="A+"; gpa=4.0; message=`Congratulations ${studentName}! Excellent result. Keep it up! 🌸`; }
+    else if (percentage >= 80) { grade="A"; gpa=3.6; message=`Well done ${studentName}! Very good performance. 🌺`; }
+    else if (percentage >= 70) { grade="B+"; gpa=3.2; message=`Good job ${studentName}! Practice more to reach higher GPA.`; }
+    else if (percentage >= 60) { grade="B"; gpa=2.8; message=`Nice effort ${studentName}. Practice more for better results.`; }
+    else if (percentage >= 50) { grade="C"; gpa=2.4; message=`You passed ${studentName}. Practice more to improve your GPA.`; }
+    else if (percentage >= 40) { grade="D"; gpa=2.0; message=`Keep trying ${studentName}. Practice more and you will improve.`; }
+    else { grade="F"; gpa=0.0; message=`Do not lose hope ${studentName}. Practice more and try again.`; }
+
+    document.getElementById("result").innerHTML = `
+        <b>Name:</b> ${studentName} <br>
+        <b>Total Marks:</b> ${total} / 450 <br>
+        <b>Percentage:</b> ${percentage.toFixed(2)}% <br>
+        <b>Grade:</b> ${grade} <br>
+        <b>GPA:</b> ${gpa} <br><br>
+        <b>Message:</b> ${message}
+    `;
 }
 </script>
 

@@ -7,19 +7,22 @@
 /* Background & font */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #ffe5ec, #fff0f5); /* soft floral colors */
+    background: linear-gradient(to right, #ffe5ec, #fff0f5);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
 }
 
 /* Main container */
 .container {
     background: rgba(255, 255, 255, 0.95);
-    padding: 25px 30px;
+    padding: 20px;
     border-radius: 15px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     text-align: center;
 }
@@ -38,7 +41,8 @@ input {
     margin: 5px 0;
     border-radius: 10px;
     border: 1px solid #dcdcdc;
-    font-size: 14px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 /* Button */
@@ -49,7 +53,7 @@ button {
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 10px;
     cursor: pointer;
     transition: 0.3s;
@@ -65,14 +69,25 @@ button:hover {
     background: #fff0f5;
     padding: 15px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 16px;
     color: #5a2a5b;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    word-wrap: break-word;
 }
 
-/* Flower emoji heading decoration */
-.flower {
-    font-size: 20px;
+/* Responsive adjustments */
+@media screen and (max-width: 500px) {
+    h2 {
+        font-size: 22px;
+    }
+    input, button {
+        font-size: 16px;
+        padding: 10px;
+    }
+    .result {
+        font-size: 15px;
+        padding: 12px;
+    }
 }
 </style>
 </head>

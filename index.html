@@ -2,169 +2,158 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GPA Calculator</title>
-
+<title>Prasanna's GPA Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-
-body{
-font-family: Arial, sans-serif;
-background: linear-gradient(to right,#ffe5ec,#fff0f5);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-margin:0;
+body {
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background: linear-gradient(135deg,#0f0f0f,#1a1a2e);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    padding:20px;
 }
-
-.container{
-background:white;
-padding:20px;
-border-radius:15px;
-width:350px;
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
-text-align:center;
+.container {
+    width:100%;
+    max-width:600px;
+    background:#111;
+    border-radius:15px;
+    padding:20px;
+    box-shadow: 0 0 30px #0ff;
 }
-
-h2{
-color:#d63384;
-margin-bottom:15px;
+header {text-align:center;margin-bottom:20px;}
+header h1 {
+    font-size:2em;
+    color:#0ff;
+    text-shadow: 0 0 10px #0ff;
 }
-
-input{
-width:90%;
-padding:10px;
-margin:5px 0;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:16px;
+.card {
+    background:#1a1a1a;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 0 15px #0ff;
 }
-
-button{
-width:95%;
-padding:12px;
-margin-top:10px;
-background:#ff66b2;
-color:white;
-border:none;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
+table {width:100%;border-collapse: collapse;margin-bottom:10px;}
+th, td {padding:8px;text-align:center;font-size:14px;}
+th {background:#0c0c0c;color:#0ff;text-shadow:0 0 5px #0ff;}
+td {background:#111;border:1px solid #0ff;}
+input[type="number"], input[type="text"] {
+    width:80%;padding:5px;border-radius:6px;border:1px solid #0ff;background:#111;color:#0ff;
 }
-
-button:hover{
-background:#ff3399;
+button {
+    width:100%;padding:12px;margin-top:10px;border:none;border-radius:10px;font-size:18px;background:#0ff;color:#111;cursor:pointer;transition:0.3s;
 }
-
-.result{
-margin-top:15px;
-background:#fff0f5;
-padding:15px;
-border-radius:10px;
-font-size:16px;
+button:hover {background:#0cc;}
+.result-text {
+    margin-top:15px;font-size:15px;line-height:1.6;background:#0c0c0c;padding:10px;border-radius:10px;box-shadow:0 0 10px #0ff;
 }
-
-.footer{
-margin-top:10px;
-font-size:13px;
-color:#777;
+footer {margin-top:15px;font-size:13px;color:#0ff;text-align:center;}
+@media(max-width:500px){
+    header h1 {font-size:1.5em;}
+    input, button {font-size:14px; padding:6px;}
+    .result-text {font-size:14px;}
 }
-
 </style>
 </head>
-
 <body>
-
 <div class="container">
+<header>
+<h1>Prasanna's GPA Dashboard</h1>
+</header>
 
-<h2>🌸 GPA Calculator 🌺</h2>
-
-<input type="text" id="studentName" placeholder="Enter Your Name">
-
-<input type="number" id="cmaths" placeholder="C. Maths (0-50)">
-<input type="number" id="english" placeholder="English (0-50)">
-<input type="number" id="nepali" placeholder="Nepali (0-50)">
-<input type="number" id="science" placeholder="Science (0-50)">
-<input type="number" id="samagik" placeholder="Samagik (0-50)">
-<input type="number" id="omaths" placeholder="O. Maths (0-50)">
-<input type="number" id="hamro" placeholder="Hamro Panauti (0-50)">
-<input type="number" id="account" placeholder="Account (0-50)">
-<input type="number" id="health" placeholder="Health (0-50)">
-
+<div class="card">
+<input type="text" id="studentName" placeholder="Enter Student Name" style="margin-bottom:10px;">
+<table>
+<tr>
+<th>Subject</th>
+<th>Theory</th>
+<th>Practical</th>
+<th>Total</th>
+<th>GPA</th>
+<th>Grade</th>
+</tr>
+<tr><td>C. Maths</td><td><input type="number" id="cmT"></td><td><input type="number" id="cmP"></td><td id="cmTotal">0</td><td id="cmGPA">0</td><td id="cmGrade">-</td></tr>
+<tr><td>O. Maths</td><td><input type="number" id="omT"></td><td><input type="number" id="omP"></td><td id="omTotal">0</td><td id="omGPA">0</td><td id="omGrade">-</td></tr>
+<tr><td>English</td><td><input type="number" id="enT"></td><td><input type="number" id="enP"></td><td id="enTotal">0</td><td id="enGPA">0</td><td id="enGrade">-</td></tr>
+<tr><td>Nepali</td><td><input type="number" id="neT"></td><td><input type="number" id="neP"></td><td id="neTotal">0</td><td id="neGPA">0</td><td id="neGrade">-</td></tr>
+<tr><td>Science</td><td><input type="number" id="scT"></td><td><input type="number" id="scP"></td><td id="scTotal">0</td><td id="scGPA">0</td><td id="scGrade">-</td></tr>
+<tr><td>Samagik</td><td><input type="number" id="saT"></td><td><input type="number" id="saP"></td><td id="saTotal">0</td><td id="saGPA">0</td><td id="saGrade">-</td></tr>
+<tr><td>Hamro Panauti</td><td><input type="number" id="hpT"></td><td><input type="number" id="hpP"></td><td id="hpTotal">0</td><td id="hpGPA">0</td><td id="hpGrade">-</td></tr>
+<tr><td>Account</td><td><input type="number" id="acT"></td><td><input type="number" id="acP"></td><td id="acTotal">0</td><td id="acGPA">0</td><td id="acGrade">-</td></tr>
+<tr><td>Health</td><td><input type="number" id="heT"></td><td><input type="number" id="heP"></td><td id="heTotal">0</td><td id="heGPA">0</td><td id="heGrade">-</td></tr>
+</table>
 <button onclick="calculateGPA()">Calculate GPA</button>
-
-<div class="result" id="result"></div>
-
-<div class="footer">
-Design by <b>Prasanna Sapkota</b>
+<div class="result-text" id="result"></div>
 </div>
-
+<footer>Design by <b>Prasanna Sapkota</b></footer>
 </div>
 
 <script>
-
-function getGradePoint(mark){
-
-if(mark >= 45) return 4.0;
-else if(mark >= 40) return 3.6;
-else if(mark >= 35) return 3.2;
-else if(mark >= 30) return 2.8;
-else if(mark >= 25) return 2.4;
-else if(mark >= 20) return 2.0;
-else return "NG";
-
-}
-
 function calculateGPA(){
+    const name = document.getElementById("studentName").value.trim();
+    if(!name){ alert("Enter student name"); return; }
 
-let studentName=document.getElementById("studentName").value.trim();
+    const subjects = [
+        ['cmT','cmP','cmTotal','cmGPA','cmGrade'],
+        ['omT','omP','omTotal','omGPA','omGrade'],
+        ['enT','enP','enTotal','enGPA','enGrade'],
+        ['neT','neP','neTotal','neGPA','neGrade'],
+        ['scT','scP','scTotal','scGPA','scGrade'],
+        ['saT','saP','saTotal','saGPA','saGrade'],
+        ['hpT','hpP','hpTotal','hpGPA','hpGrade'],
+        ['acT','acP','acTotal','acGPA','acGrade'],
+        ['heT','heP','heTotal','heGPA','heGrade']
+    ];
 
-if(studentName===""){
-alert("Please enter your name");
-return;
+    let totalMarks=0, totalGPA=0, failedSubjects=0;
+
+    function getGPA(mark){
+        if(mark>=90) return 4.0;
+        if(mark>=80) return 3.6;
+        if(mark>=70) return 3.2;
+        if(mark>=60) return 2.8;
+        if(mark>=50) return 2.4;
+        if(mark>=40) return 2.0;
+        return 0; // NG in GPA
+    }
+    function getGrade(mark){
+        if(mark>=90) return "A+";
+        if(mark>=80) return "A";
+        if(mark>=70) return "B+";
+        if(mark>=60) return "B";
+        if(mark>=50) return "C";
+        if(mark>=40) return "D";
+        return "NG";
+    }
+
+    for(let i=0;i<subjects.length;i++){
+        const theory = Number(document.getElementById(subjects[i][0]).value);
+        const practical = Number(document.getElementById(subjects[i][1]).value);
+        if(theory<0 || theory>50 || practical<0 || practical>50){ alert("Marks must be 0-50"); return; }
+
+        const total = theory+practical;
+        const gpa = getGPA(total);
+        const grade = getGrade(total);
+
+        document.getElementById(subjects[i][2]).innerText = total;
+        document.getElementById(subjects[i][3]).innerText = gpa===0 ? "NG" : gpa.toFixed(1);
+        document.getElementById(subjects[i][4]).innerText = grade;
+
+        if(gpa===0) failedSubjects++;
+        totalMarks += total;
+        totalGPA += gpa;
+    }
+
+    const averageGPA = totalGPA/subjects.length;
+    const percentage = totalMarks/(subjects.length*100)*100;
+
+    if(failedSubjects>0){
+        document.getElementById("result").innerHTML = `<b>${name}</b><br>Total Marks: ${totalMarks}/900<br>Percentage: ${percentage.toFixed(2)}%<br>GPA: ${averageGPA.toFixed(2)}<br>Result: NG in ${failedSubjects} subject(s)`;
+    }else{
+        document.getElementById("result").innerHTML = `<b>${name}</b><br>Total Marks: ${totalMarks}/900<br>Percentage: ${percentage.toFixed(2)}%<br>GPA: ${averageGPA.toFixed(2)}<br>Overall Grade: ${getGrade(averageGPA*25)}`;
+    }
 }
-
-let subjects=[
-cmaths.value,english.value,nepali.value,science.value,
-samagik.value,omaths.value,hamro.value,account.value,health.value
-];
-
-let totalMarks=0;
-let totalGP=0;
-
-for(let i=0;i<subjects.length;i++){
-
-let mark=Number(subjects[i]);
-
-if(mark<0||mark>50||subjects[i]===""){
-alert("Enter valid marks (0-50)");
-return;
-}
-
-totalMarks+=mark;
-
-let gp=getGradePoint(mark);
-
-if(gp==="NG"){
-document.getElementById("result").innerHTML=
-"<b>Name:</b> "+studentName+
-"<br><b>Result:</b> NG (Failed in one subject)";
-return;
-}
-
-totalGP+=gp;
-
-}
-
-let gpa=totalGP/subjects.length;
-
-document.getElementById("result").innerHTML=
-"<b>Name:</b> "+studentName+
-"<br><b>Total Marks:</b> "+totalMarks+" / 450"+
-"<br><b>Final GPA:</b> "+gpa.toFixed(2);
-
-}
-
 </script>
-
 </body>
 </html>

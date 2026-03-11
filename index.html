@@ -2,165 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GPA Calculator 🌺</title>
+<title>GPA Calculator</title>
+
 <style>
-/* Background & font */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #ffe5ec, #fff0f5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 10px;
+
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(to right,#ffe5ec,#fff0f5);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
 }
 
-/* Main container */
-.container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    text-align: center;
+.container{
+background:white;
+padding:20px;
+border-radius:15px;
+width:350px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+text-align:center;
 }
 
-/* Heading */
-h2 {
-    font-family: 'Cursive', sans-serif;
-    color: #d63384;
-    margin-bottom: 15px;
+h2{
+color:#d63384;
+margin-bottom:15px;
 }
 
-/* Input styles */
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 10px;
-    border: 1px solid #dcdcdc;
-    font-size: 16px;
-    box-sizing: border-box;
+input{
+width:90%;
+padding:10px;
+margin:5px 0;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:16px;
 }
 
-/* Button */
-button {
-    width: 95%;
-    padding: 12px;
-    background: #ff66b2;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+button{
+width:95%;
+padding:12px;
+margin-top:10px;
+background:#ff66b2;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
 }
 
-button:hover {
-    background: #ff3399;
+button:hover{
+background:#ff3399;
 }
 
-/* Result box */
-.result {
-    margin-top: 15px;
-    background: #fff0f5;
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 16px;
-    color: #5a2a5b;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    word-wrap: break-word;
+.result{
+margin-top:15px;
+background:#fff0f5;
+padding:15px;
+border-radius:10px;
+font-size:16px;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 500px) {
-    h2 {
-        font-size: 22px;
-    }
-    input, button {
-        font-size: 16px;
-        padding: 10px;
-    }
-    .result {
-        font-size: 15px;
-        padding: 12px;
-    }
+.footer{
+margin-top:10px;
+font-size:13px;
+color:#777;
 }
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
-    <h2><span class="flower">🌸</span> GPA Calculator <span class="flower">🌺</span></h2>
 
-    <!-- Student Name -->
-    <input type="text" id="studentName" placeholder="Enter Your Name">
+<h2>🌸 GPA Calculator 🌺</h2>
 
-    <!-- Subjects -->
-    <input type="number" id="cmaths" placeholder="C. Maths (0-50)">
-    <input type="number" id="english" placeholder="English (0-50)">
-    <input type="number" id="nepali" placeholder="Nepali (0-50)">
-    <input type="number" id="science" placeholder="Science (0-50)">
-    <input type="number" id="samagik" placeholder="Samagik (0-50)">
-    <input type="number" id="omaths" placeholder="O. Maths (0-50)">
-    <input type="number" id="hamro" placeholder="Hamro Panauti (0-50)">
-    <input type="number" id="account" placeholder="Account (0-50)">
-    <input type="number" id="health" placeholder="Health (0-50)">
+<input type="text" id="studentName" placeholder="Enter Your Name">
 
-    <button onclick="calculateGPA()">Calculate GPA</button>
+<input type="number" id="cmaths" placeholder="C. Maths (0-50)">
+<input type="number" id="english" placeholder="English (0-50)">
+<input type="number" id="nepali" placeholder="Nepali (0-50)">
+<input type="number" id="science" placeholder="Science (0-50)">
+<input type="number" id="samagik" placeholder="Samagik (0-50)">
+<input type="number" id="omaths" placeholder="O. Maths (0-50)">
+<input type="number" id="hamro" placeholder="Hamro Panauti (0-50)">
+<input type="number" id="account" placeholder="Account (0-50)">
+<input type="number" id="health" placeholder="Health (0-50)">
 
-    <div class="result" id="result"></div>
+<button onclick="calculateGPA()">Calculate GPA</button>
+
+<div class="result" id="result"></div>
+
+<div class="footer">
+Design by <b>Prasanna Sapkota</b>
+</div>
+
 </div>
 
 <script>
-function calculateGPA() {
-    const studentName = document.getElementById("studentName").value.trim();
-    if(studentName === "") {
-        alert("Please enter your name!");
-        return;
-    }
 
-    let subjects = [
-        cmaths.value, english.value, nepali.value, science.value,
-        samagik.value, omaths.value, hamro.value, account.value, health.value
-    ];
+function getGradePoint(mark){
 
-    let total = 0;
+if(mark >= 45) return 4.0;
+else if(mark >= 40) return 3.6;
+else if(mark >= 35) return 3.2;
+else if(mark >= 30) return 2.8;
+else if(mark >= 25) return 2.4;
+else if(mark >= 20) return 2.0;
+else return "NG";
 
-    for (let i = 0; i < subjects.length; i++) {
-        let mark = Number(subjects[i]);
-        if (mark < 0 || mark > 50 || subjects[i] === "") {
-            alert("Please enter valid marks (0-50) for all subjects.");
-            return;
-        }
-        total += mark;
-    }
-
-    let percentage = (total / 450) * 100;
-    let grade = "";
-    let gpa = 0;
-    let message = "";
-
-    if (percentage >= 90) { grade="A+"; gpa=4.0; message=`Congratulations ${studentName}! Excellent result. Keep it up! 🌸`; }
-    else if (percentage >= 80) { grade="A"; gpa=3.6; message=`Well done ${studentName}! Very good performance. 🌺`; }
-    else if (percentage >= 70) { grade="B+"; gpa=3.2; message=`Good job ${studentName}! Practice more to reach higher GPA.`; }
-    else if (percentage >= 60) { grade="B"; gpa=2.8; message=`Nice effort ${studentName}. Practice more for better results.`; }
-    else if (percentage >= 50) { grade="C"; gpa=2.4; message=`You passed ${studentName}. Practice more to improve your GPA.`; }
-    else if (percentage >= 40) { grade="D"; gpa=2.0; message=`Keep trying ${studentName}. Practice more and you will improve.`; }
-    else { grade="F"; gpa=0.0; message=`Do not lose hope ${studentName}. Practice more and try again.`; }
-
-    document.getElementById("result").innerHTML = `
-        <b>Name:</b> ${studentName} <br>
-        <b>Total Marks:</b> ${total} / 450 <br>
-        <b>Percentage:</b> ${percentage.toFixed(2)}% <br>
-        <b>Grade:</b> ${grade} <br>
-        <b>GPA:</b> ${gpa} <br><br>
-        <b>Message:</b> ${message}
-    `;
 }
+
+function calculateGPA(){
+
+let studentName=document.getElementById("studentName").value.trim();
+
+if(studentName===""){
+alert("Please enter your name");
+return;
+}
+
+let subjects=[
+cmaths.value,english.value,nepali.value,science.value,
+samagik.value,omaths.value,hamro.value,account.value,health.value
+];
+
+let totalMarks=0;
+let totalGP=0;
+
+for(let i=0;i<subjects.length;i++){
+
+let mark=Number(subjects[i]);
+
+if(mark<0||mark>50||subjects[i]===""){
+alert("Enter valid marks (0-50)");
+return;
+}
+
+totalMarks+=mark;
+
+let gp=getGradePoint(mark);
+
+if(gp==="NG"){
+document.getElementById("result").innerHTML=
+"<b>Name:</b> "+studentName+
+"<br><b>Result:</b> NG (Failed in one subject)";
+return;
+}
+
+totalGP+=gp;
+
+}
+
+let gpa=totalGP/subjects.length;
+
+document.getElementById("result").innerHTML=
+"<b>Name:</b> "+studentName+
+"<br><b>Total Marks:</b> "+totalMarks+" / 450"+
+"<br><b>Final GPA:</b> "+gpa.toFixed(2);
+
+}
+
 </script>
 
 </body>
